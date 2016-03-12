@@ -48,7 +48,7 @@ class Vtk < Formula
   depends_on "libtiff" => :recommended
   depends_on "matplotlib" => :python if build.with?("matplotlib") && build.with?("python")
   depends_on "ffmpeg" => :optional
-  
+
   # If --with-qt and --with-python, then we automatically use PyQt, too!
   if build.with? "python"
     if build.with? "qt"
