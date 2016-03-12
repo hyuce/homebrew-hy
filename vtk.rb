@@ -188,6 +188,11 @@ class Vtk < Formula
     end
     s.empty? ? nil : s
   end
+    
+    if build.head? 
+       then 
+       patch :p0, :DATA
+       end
 end
 
 __END__
