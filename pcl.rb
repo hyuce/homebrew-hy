@@ -60,7 +60,8 @@ class Pcl < Formula
   option "with-examples", "Build pcl examples."
   option "without-tools", "Build without tools."
   option "without-apps", "Build without apps."
-
+  option "with-openmp", "Build with OpenMP Support"
+  
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
 
@@ -80,7 +81,7 @@ class Pcl < Formula
   else
     depends_on "qt" => :recommended
   end
-
+  
   if build.with? "qt"
     depends_on "sip" # Fix for building system
     depends_on "pyqt" # Fix for building system
@@ -113,9 +114,13 @@ class Pcl < Formula
       args << "-DWITH_QT:BOOL=FALSE"
     end
 
+    if build.with? "openmp"
+      args << "-DOpenMP_C_FLAGS=-fopenmp"
+      args << "-DOpenMP_CXX_FLAGS=-fopenmp=libomp" 
+      
     if build.with? "cuda"
       args += %W[
-        -DWITH_CUDA:BOOL=AUTO_OFF
+        -DWITH_CUDA:BOOL=ON
         -DBUILD_GPU:BOOL=ON
         -DBUILD_gpu_people:BOOL=ON
         -DBUILD_gpu_surface:BOOL=ON
@@ -126,8 +131,8 @@ class Pcl < Formula
     end
 
     if build.with? "openni2"
-      ENV.append "OPENNI2_INCLUDE", "#{Formula["openni2"].opt_include}/ni2"
-      ENV.append "OPENNI2_LIB", "#{Formula["openni2"].opt_lib}/ni2"
+      args << "-DOPENNI2_INCLUDE_DIRS:PATH=/usr/local/include/ni2"
+      args << "OPENNI2_LIBRARY:FILEPATH=/usr/local/lib/ni2/libOpenNI2.dylib"
       args << "-DBUILD_OPENNI2:BOOL=ON"
     end
 
