@@ -117,7 +117,8 @@ class Pcl < Formula
     if build.with? "openmp"
       args << "-DOpenMP_C_FLAGS=-fopenmp"
       args << "-DOpenMP_CXX_FLAGS=-fopenmp=libomp" 
-      
+    end
+           
     if build.with? "cuda"
       args += %W[
         -DWITH_CUDA:BOOL=ON
