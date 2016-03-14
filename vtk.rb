@@ -132,11 +132,11 @@ class Vtk < Formula
       elsif build.without?("python") && build.with?("python3")
         args << "-DVTK_WRAP_PYTHON=ON"
         args << "-DPYTHON_EXECUTABLE=/usr/local/bin/python3"
-        args << "-DPYTHON_INCLUDE_DIR='#{`python3-config --prefix`.chomp}/include/python3.5'"
+        args << "-DPYTHON_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/include/python3.5m"
         # CMake picks up the system"s python dylib, even if we have a brewed one.
-        args << "-DPYTHON_LIBRARY='#{`python3-config --prefix`.chomp}/lib/libpython3.5.dylib'"
+        args << "-DPYTHON_LIBRARY=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5.dylib"
         # Set the prefix for the python bindings to the Cellar
-        args << "-DVTK_INSTALL_PYTHON_MODULE_DIR='#{lib}/python3.5/site-packages'"
+        args << "-DVTK_INSTALL_PYTHON_MODULE_DIR=/usr/local/lib/python3.5/site-packages"
       elsif build.with?("python3") && build.with?("python")
         # Does not currenly support building both python 2 and 3 versions
          odie "VTK: Does not currently support building both python 2 and 3 wrappers"
