@@ -85,13 +85,13 @@ class Pcl < Formula
   if build.with? "qt"
     depends_on "sip" # Fix for building system
     depends_on "pyqt" # Fix for building system
-    depends_on "vtk" => [:recommended, "with-qt"]
+    depends_on "hyuce/hybrew/vtk" => [:recommended, "with-qt"]
   elsif build.with? "qt5"
     depends_on "sip" # Fix for building system
     depends_on "pyqt5" => ["with-python", "without-python3"] # Fix for building system
-    depends_on "vtk" => [:recommended, "with-qt5"]
+    depends_on "hyuce/hybrew/vtk" => [:recommended, "with-qt5"]
   else
-    depends_on "vtk" => :recommended
+    depends_on "hyuce/hybrew/vtk" => :recommended
   end
   depends_on "openni" => :optional
   depends_on "openni2" => :optional
