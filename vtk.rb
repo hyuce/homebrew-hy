@@ -132,9 +132,9 @@ class Vtk < Formula
       elsif build.without?("python") && build.with?("python3")
         args << "-DVTK_WRAP_PYTHON=ON"
         args << "-DPYTHON_EXECUTABLE=/usr/local/bin/python3"
-        args << "-DPYTHON_INCLUDE_DIR='#{`python3-config --prefix`.chomp}/include/python3.5m'"
+        args << "-DPYTHON_INCLUDE_DIR='#{`python3-config --prefix`.chomp}/include/python3.5'"
         # CMake picks up the system"s python dylib, even if we have a brewed one.
-        args << "-DPYTHON_LIBRARY='#{`python3-config --prefix`.chomp}/lib/libpython3.5m.dylib'"
+        args << "-DPYTHON_LIBRARY='#{`python3-config --prefix`.chomp}/lib/libpython3.5.dylib'"
         # Set the prefix for the python bindings to the Cellar
         args << "-DVTK_INSTALL_PYTHON_MODULE_DIR='#{lib}/python3.5/site-packages'"
       elsif build.with?("python3") && build.with?("python")
