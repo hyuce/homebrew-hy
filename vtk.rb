@@ -190,7 +190,7 @@ class Vtk < Formula
   end
     if build.head? 
        then 
-       patch :p0, :DATA
+       patch :p1, :DATA
        end
 end
 
