@@ -68,7 +68,7 @@ class Opencv3 < Formula
   depends_on "qt" => :optional
   depends_on "qt5" => :optional
   depends_on "tbb" => :optional
-  depends_on "vtk" => :optional
+  depends_on "hyuce/hybrew/vtk" => :optional
 
   with_python = build.with?("python") || build.with?("python3")
   pythons = build.with?("python3") ? ["with-python3"] : []
