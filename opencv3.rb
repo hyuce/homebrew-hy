@@ -1,7 +1,7 @@
 class Opencv3 < Formula
   desc "Open source computer vision library, version 3"
   homepage "http://opencv.org/"
-  revision 1
+  revision 2
 
   stable do
     url "https://github.com/Itseez/opencv/archive/3.1.0.tar.gz"
