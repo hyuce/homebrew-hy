@@ -172,11 +172,13 @@ class Opencv3 < Formula
     end
 
     if build.with? "python3"
-      py3_config = `python3-config --configdir`.chomp
-      py3_include = `python3 -c "import distutils.sysconfig as s; print(s.get_python_inc())"`.chomp
-      py3_version = Language::Python.major_minor_version "python3"
-      args << "-DPYTHON3_LIBRARY=#{py3_config}/libpython#{py3_version}.#{dylib}"
-      args << "-DPYTHON3_INCLUDE_DIR=#{py3_include}"
+#      py3_config = `python3-config --configdir`.chomp
+#      py3_include = `python3 -c "import distutils.sysconfig as s; print(s.get_python_inc())"`.chomp
+#      py3_version = Language::Python.major_minor_version "python3"
+#      args << "-DPYTHON3_LIBRARY=#{py3_config}/libpython#{py3_version}.#{dylib}"
+#      args << "-DPYTHON3_INCLUDE_DIR=#{py3_include}"
+       args << "-DPYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5.dylib"
+       args << "-DPYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/include/python3.5m"
     end
 
     if ENV.compiler == :clang && !build.bottle?
