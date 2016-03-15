@@ -159,10 +159,10 @@ class Opencv3 < Formula
 
     if build.with? "openni2"
       args << "-DWITH_OPENNI2=ON"
-      args << "-DOPENNI2_INCLUDE_DIR:PATH=/usr/local/include/ni2"
-      args << "-DOPENNI2_LIBRARY:FILEPATH=/usr/local/lib/ni2/libOpenNI2.dylib" 
-      args << "-DOPENNI2_LIB_DIR:PATH=/usr/local/lib/ni2" 
-      args << "-DOPENNI2_INCLUDES:FILEPATH=/usr/local/include/ni2/OpenNI.h" 
+      args << "-DOPENNI2_INCLUDE_DIR=/usr/local/include/ni2"
+      args << "-DOPENNI2_LIBRARY=/usr/local/lib/ni2/libOpenNI2.dylib" 
+      args << "-DOPENNI2_LIB_DIR=/usr/local/lib/ni2" 
+      args << "-DOPENNI2_INCLUDES=/usr/local/include/ni2/OpenNI.h" 
     end
 
     if build.with? "python"
@@ -170,6 +170,7 @@ class Opencv3 < Formula
       args << "-DPYTHON2_LIBRARY=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib"
       args << "-DPYTHON2_INCLUDE_DIR=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/include/python2.7"
       args << "-DPYTHON2_PACKAGES_PATH=/usr/local/lib/python2.7/site-packages"
+      args << "-DPYTHON2_NUMPY_INCLUDE_DIRS=/usr/local/lib/python2.7/site-packages/numpy" 
     end
 
     if build.with? "python3"
@@ -177,6 +178,7 @@ class Opencv3 < Formula
        args << "-DPYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5.dylib"
        args << "-DPYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/include/python3.5m"
        args << "-DPYTHON3_PACKAGES_PATH=/usr/local/lib/python3.5/site-packages" 
+       args << "-DPYTHON3_NUMPY_INCLUDE_DIRS="/usr/local/lib/python3.5/site-packages/numpy" 
     end
 
     if ENV.compiler == :clang && !build.bottle?
