@@ -159,26 +159,24 @@ class Opencv3 < Formula
 
     if build.with? "openni2"
       args << "-DWITH_OPENNI2=ON"
-      ENV["OPENNI2_INCLUDE"] ||= "#{Formula["openni2"].opt_include}/ni2"
-      ENV["OPENNI2_REDIST"] ||= "#{Formula["openni2"].opt_lib}/ni2"
+      args << "-DOPENNI2_INCLUDE_DIR:PATH=/usr/local/include/ni2"
+      args << "-DOPENNI2_LIBRARY:FILEPATH=/usr/local/lib/ni2/libOpenNI2.dylib" 
+      args << "-DOPENNI2_LIB_DIR:PATH=/usr/local/lib/ni2" 
+      args << "-DOPENNI2_INCLUDES:FILEPATH=/usr/local/include/ni2/OpenNI.h" 
     end
 
     if build.with? "python"
-      py_prefix = `python-config --prefix`.chomp
-      py_lib = OS.linux? ? `python-config --configdir`.chomp : "#{py_prefix}/lib"
-      args << "-DPYTHON2_EXECUTABLE=#{which "python"}"
-      args << "-DPYTHON2_LIBRARY=#{py_lib}/libpython2.7.#{dylib}"
-      args << "-DPYTHON2_INCLUDE_DIR=#{py_prefix}/include/python2.7"
+      args << "-DPYTHON2_EXECUTABLE=/usr/local/bin/python2"
+      args << "-DPYTHON2_LIBRARY=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib"
+      args << "-DPYTHON2_INCLUDE_DIR=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/include/python2.7"
+      args << "-DPYTHON2_PACKAGES_PATH=/usr/local/lib/python2.7/site-packages"
     end
 
     if build.with? "python3"
-#      py3_config = `python3-config --configdir`.chomp
-#      py3_include = `python3 -c "import distutils.sysconfig as s; print(s.get_python_inc())"`.chomp
-#      py3_version = Language::Python.major_minor_version "python3"
-#      args << "-DPYTHON3_LIBRARY=#{py3_config}/libpython#{py3_version}.#{dylib}"
-#      args << "-DPYTHON3_INCLUDE_DIR=#{py3_include}"
+       args << "-DPYTHON3_EXECUTABLE=/usr/local/bin/python3"
        args << "-DPYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5.dylib"
        args << "-DPYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/include/python3.5m"
+       args << "-DPYTHON3_PACKAGES_PATH=/usr/local/lib/python3.5/site-packages" 
     end
 
     if ENV.compiler == :clang && !build.bottle?
