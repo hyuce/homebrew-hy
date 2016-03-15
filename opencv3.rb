@@ -166,6 +166,7 @@ class Opencv3 < Formula
     end
 
     if build.with? "python"
+      args << "-DBUILD_opencv_python2=OFF"
       args << "-DPYTHON2_EXECUTABLE=/usr/local/bin/python2"
       args << "-DPYTHON2_LIBRARY=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib"
       args << "-DPYTHON2_INCLUDE_DIR=/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/include/python2.7"
@@ -174,6 +175,7 @@ class Opencv3 < Formula
     end
 
     if build.with? "python3"
+       args << "-DBUILD_opencv_python2=OFF"
        args << "-DPYTHON3_EXECUTABLE=/usr/local/bin/python3"
        args << "-DPYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5.dylib"
        args << "-DPYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/include/python3.5m"
