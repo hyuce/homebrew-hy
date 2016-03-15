@@ -178,7 +178,7 @@ class Opencv3 < Formula
        args << "-DPYTHON3_LIBRARY=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/lib/libpython3.5.dylib"
        args << "-DPYTHON3_INCLUDE_DIR=/usr/local/Cellar/python3/3.5.1/Frameworks/Python.framework/Versions/3.5/include/python3.5m"
        args << "-DPYTHON3_PACKAGES_PATH=/usr/local/lib/python3.5/site-packages" 
-       args << "-DPYTHON3_NUMPY_INCLUDE_DIRS="/usr/local/lib/python3.5/site-packages/numpy" 
+       args << "-DPYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5/site-packages/numpy" 
     end
 
     if ENV.compiler == :clang && !build.bottle?
